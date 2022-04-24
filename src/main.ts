@@ -9,16 +9,8 @@ declare const module: any;
 async function bootstrap() {
   console.log('bootstrap');
   const fs = require('fs');
-  const keyFile = fs.readFileSync(join(__dirname, '..', 'ssl/server.key'));
-  const certFile = fs.readFileSync(join(__dirname, '..', 'ssl/server.crt'));
   console.log('certs ready');
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    // logger: new AppLogger(),
-    httpsOptions: {
-      key: keyFile,
-      cert: certFile,
-    },
-  });
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {});
   console.log('cors enabled');
   app.enableCors();
   app.setGlobalPrefix('api');
